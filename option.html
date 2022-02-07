@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+</head>
+
+<body>
+
+    <form class="container my-5">
+        <div class="form-group">
+
+            <p>상품선택</p>
+            <select class="form-control" id="option1">
+                <option>바지</option>
+                <option>셔츠</option>
+            </select>
+
+            <div class="size-select">
+                <p class="mt-4">사이즈선택</p>
+                <select class="form-control" id="option2">
+                </select>
+            </div>
+
+        </div>
+    </form>
+
+    <script>
+
+        let option1 = document.getElementById('option1');
+        let option2 = document.getElementById('option2');
+        let option3 = document.querySelector('.size-select');
+        
+
+        let shirtSize = [95, 100, 105];
+        let pantsSize = [28, 30, 32];
+
+        option1.addEventListener('change', updateValue);
+
+        function updateValue(e) {
+            option2.innerHTML = '';
+            if (option1.value == '셔츠') {
+                shirtSize.forEach(function (a) {
+                    optionTest(a);
+                });
+            } else if (option1.value == '바지') {
+                pantsSize.forEach(function (a) {
+                    optionTest(a);
+                });
+            }
+        }
+
+        function optionTest(a) {
+            let new_pTag = document.createElement('option');
+            option2.append(new_pTag);
+            new_pTag.append(a);
+        }
+
+
+
+
+
+        // function create_pTag(a) {
+        //     let new_pTag = document.createElement('option');
+        //     new_pTag.setAttribute('class', 'option3');
+        //     new_pTag.textContent = a;
+        //     option2.appendChild(new_pTag);
+        // }
+
+        
+
+        // function updateValue(e) {
+        //     if (option1.value == '셔츠') {
+        //         shirtSize.forEach(function (i) {
+        //             option2.append(create_pTag(i));
+        //         });
+
+        //     } else if (option1.value == '바지') {
+        //         pantsSize.forEach(function (i) {
+        //             option2.append(create_pTag(i));
+        //         });
+        //     }
+        // }
+
+
+        
+    </script>
+</body>
+
+</html>
