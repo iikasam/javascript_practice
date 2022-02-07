@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 </head>
@@ -17,8 +19,9 @@
 
             <p>상품선택</p>
             <select class="form-control" id="option1">
-                <option>바지</option>
-                <option>셔츠</option>
+                <option value="pantsSize">바지</option>
+                <option value="shirtSize">셔츠</option>
+                <option value="color">색상</option>
             </select>
 
             <div class="size-select">
@@ -28,6 +31,8 @@
             </div>
 
         </div>
+
+        <p id="title"></p>
     </form>
 
     <script>
@@ -35,24 +40,24 @@
         let option1 = document.getElementById('option1');
         let option2 = document.getElementById('option2');
         let option3 = document.querySelector('.size-select');
+
+
+        const sizeList = {
+            pantsSize : [28, 30, 32],
+            shirtSize : [95, 100, 105],
+            color : ['빨강','파랑','노랑']
+        }
+
+
+        option1.addEventListener('change', function(){
+            List(option1.value);
+        });
         
-
-        let shirtSize = [95, 100, 105];
-        let pantsSize = [28, 30, 32];
-
-        option1.addEventListener('change', updateValue);
-
-        function updateValue(e) {
+        function List(x) {
             option2.innerHTML = '';
-            if (option1.value == '셔츠') {
-                shirtSize.forEach(function (a) {
-                    optionTest(a);
-                });
-            } else if (option1.value == '바지') {
-                pantsSize.forEach(function (a) {
-                    optionTest(a);
-                });
-            }
+            sizeList[x].forEach(function (i) {
+                optionTest(i);
+            });
         }
 
         function optionTest(a) {
@@ -62,8 +67,100 @@
         }
 
 
+        // 스위치도 아님
+        // let item = ['바지', '셔츠']
+        // let state = option1.value;
+        // switch (state) {
+        //     case '바지':
+        //         List('pantsSize');
+        //         break;
+        //     case '셔츠':
+        //         List('shirtSize');
+        //         break;
+        //     default:
+        //         List('pantsSize');
+        // }
+        // function List(w) {
+        //     sizeList[w].forEach(function (i) {
+        //         optionTest(i);
+        //     });
+        // }
+
+        
+
+        // function optionTest(a) {
+        //     let new_pTag = document.createElement('option');
+        //     option2.append(new_pTag);
+        //     new_pTag.append(a);
+        // }
 
 
+
+        // for in 을 쓰면 뭐하나,,
+        // const sizeList = {
+        //     shirtSize : [95, 100, 105],
+        //     pantsSize :[28, 30, 32]
+        // }
+
+        // for (let i in sizeList.shirtSize) {
+        //     optionTest(`${sizeList.shirtSize[i]}`);
+        // }
+
+        // function optionTest(a) {
+        //     let new_pTag = document.createElement('option');
+        //     option2.append(new_pTag);
+        //     new_pTag.append(a);
+        // }
+        
+        
+        
+
+        // option1.addEventListener('change', updateValue);
+
+        // // if문 삭제하기
+        // function updateValue(e) {
+        //     option2.innerHTML = '';
+        //     if (option1.value == '셔츠') {
+        //         shirtSize.forEach(function (a) {
+        //             optionTest(a);
+        //         });
+        //     } else if (option1.value == '바지') {
+        //         pantsSize.forEach(function (a) {
+        //             optionTest(a);
+        //         });
+        //     }
+        // }
+
+        // function optionTest(a) {
+        //     let new_pTag = document.createElement('option');
+        //     option2.append(new_pTag);
+        //     new_pTag.append(a);
+        // }
+        
+
+        // 중복되는게 많음
+ 
+        // function updateValue(e) {
+        //     option2.innerHTML = '';
+        //     if (option1.value == '셔츠') {
+        //         shirtSize.forEach(function (a) {
+        //             optionTest(a);
+        //         });
+        //     } else if (option1.value == '바지') {
+        //         pantsSize.forEach(function (a) {
+        //             optionTest(a);
+        //         });
+        //     }
+        // }
+
+        // function optionTest(a) {
+        //     let new_pTag = document.createElement('option');
+        //     option2.append(new_pTag);
+        //     new_pTag.append(a);
+        // }
+
+
+        // append() 사용안하려다...
 
         // function create_pTag(a) {
         //     let new_pTag = document.createElement('option');
@@ -71,8 +168,6 @@
         //     new_pTag.textContent = a;
         //     option2.appendChild(new_pTag);
         // }
-
-        
 
         // function updateValue(e) {
         //     if (option1.value == '셔츠') {
@@ -86,8 +181,6 @@
         //         });
         //     }
         // }
-
-
         
     </script>
 </body>
